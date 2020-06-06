@@ -23,7 +23,7 @@ image_transform = transforms.Compose([  # [1]
 
 
 class PretrainedVisionModel:
-    def __init__(self, model_name):
+    def __init__(self, model_name=""):
         self.model_name = model_name
 
         model = models.shufflenet_v2_x1_0(pretrained=True, progress=True)
@@ -37,8 +37,7 @@ class PretrainedVisionModel:
         with open('imagenet_classes.txt') as f:
             self.class_index = [line.strip() for line in f.readlines()]
 
-    def analyze_file(self, file_path, min_confidence=0.02, max_tags=10):
-        img = Image.open(file_path)
+    def analyze(self, img, min_confidence=0.02, max_tags=10):
         img_transformed = image_transform(img)
         batch_t = torch.unsqueeze(img_transformed, 0)
 
@@ -58,9 +57,9 @@ class PretrainedVisionModel:
         for i in range(len(index)):
             if perc[i] >= min_confidence:
                 tags.append((self.class_index[index[i].item()], perc[i].item()))
-        return tags, image_features.tolist()
+        return tags, image_features
 
 
 if __name__ == '__main__':
     model = PretrainedVisionModel("shufflenet")
-    print(model.analyze_file("dog.jpg"))
+    print(model.analyze(Image.open("dog.jpg")))

@@ -13,13 +13,13 @@ from pydantic import BaseModel
 
 
 class AnalysisRequest(BaseModel):
-    image_file: bytes = None
-    image_name: str = ""
-    meme_text: str = ""
+    image_url: bytes = None
+    text: str = ""
     comments: List[str] = []
-
+    min_confidence: float = 0.0
+    max_tags: int = 10
 
 class AnalysisResponse(BaseModel):
     tags: List[str] = []
-    vector: List[float] = []
-    min_confidence: float = 0.0
+    image_vector: List[float] = []
+    text_vector: List[float] = []
