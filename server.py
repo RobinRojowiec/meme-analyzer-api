@@ -42,7 +42,7 @@ text_model = PretrainedTextModel()
 
 
 @app.post("/api/analyze", response_model=AnalysisResponse,
-          summary="Analyzes an meme and returns tags/vector from SimSearch")
+          summary="Analyzes an meme and returns tags/vector for Images and Text")
 async def extract_text(request: AnalysisRequest):
     if request is not None:
         response = AnalysisResponse()
