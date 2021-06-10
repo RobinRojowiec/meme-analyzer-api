@@ -1,7 +1,7 @@
 numpy==1.18.5
 jsonpickle==1.1
 pillow==7.1.2
-fastapi==0.54.2
+fastapi==0.65.2
 uvicorn==0.11.7
 requests==2.23.0
 python-dotenv==0.13.0
