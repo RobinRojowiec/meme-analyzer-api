@@ -1,4 +1,4 @@
-numpy==1.18.5
+numpy==1.22.0
 jsonpickle==1.1
 pillow==7.1.2
 fastapi==0.54.2
